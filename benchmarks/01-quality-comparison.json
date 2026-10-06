@@ -1,0 +1,65 @@
+{
+  "prompt": "Respond in exactly three short lines, without an introduction, headings or LaTeX. A request emits its first token at 200 ms and its last token at 1200 ms after the request starts, with 21 output tokens in total. Calculate TTFT, average TPOT, and decode tokens/second. Show the formulas briefly, one metric per line.",
+  "settings": {
+    "threads": 6,
+    "ngl": 0,
+    "ctx": 2048,
+    "temperature": 0.0,
+    "seed": 42,
+    "max_tokens": 200
+  },
+  "results": [
+    {
+      "quant": "UD-Q4_K_XL",
+      "model_file": "gemma-4-E2B-it-UD-Q4_K_XL.gguf",
+      "answer": "TTFT = 1000 ms\nAverage TPOT = 500 ms\nDecode tokens/second = 21",
+      "elapsed_ms": 2371.5,
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 29,
+        "prompt_tokens": 85,
+        "total_tokens": 114,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 85,
+        "prompt_ms": 855.538,
+        "prompt_per_token_ms": 10.065152941176471,
+        "prompt_per_second": 99.35268801619564,
+        "predicted_n": 29,
+        "predicted_ms": 1449.214,
+        "predicted_per_token_ms": 51.757642857142855,
+        "predicted_per_second": 19.32081804343596
+      }
+    },
+    {
+      "quant": "UD-Q2_K_XL",
+      "model_file": "gemma-4-E2B-it-UD-Q2_K_XL.gguf",
+      "answer": "TTFT = 1000ms - 200ms = 800ms\nAverage TPOT = (1200ms - 200ms) / 1000ms = 1000ms\nDecode tokens/sec = 21 tokens / 1000ms = 21 tokens/sec",
+      "elapsed_ms": 5878.8,
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 78,
+        "prompt_tokens": 85,
+        "total_tokens": 163,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 85,
+        "prompt_ms": 2223.552,
+        "prompt_per_token_ms": 26.15943529411765,
+        "prompt_per_second": 38.22712488846674,
+        "predicted_n": 78,
+        "predicted_ms": 3579.763,
+        "predicted_per_token_ms": 46.49042857142857,
+        "predicted_per_second": 21.509803861317078
+      }
+    }
+  ]
+}

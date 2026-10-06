@@ -100,9 +100,10 @@ def detect_ram_gb() -> float:
              "(Get-CimInstance Win32_ComputerSystem).TotalPhysicalMemory"],
             timeout=20,
         )
-        digits = "".join(c for c in out if c.isdigit())
-        if digits:
-            return round(int(digits) / 1024**3, 1)
+        # Never treat numbers in a PowerShell error message as memory capacity.
+        value = out.strip()
+        if rc == 0 and value.isdigit():
+            return round(int(value) / 1024**3, 1)
     return 0.0
 
 
@@ -269,7 +270,7 @@ def main() -> int:
         },
         "recommendation": rec,
     }
-    labkit.hardware_json().write_text(json.dumps(out, indent=2))
+    labkit.hardware_json().write_text(json.dumps(out, indent=2), encoding="utf-8")
     print(f"\nSaved {labkit.hardware_json().name} -- every other track reads this.")
     return 0
 

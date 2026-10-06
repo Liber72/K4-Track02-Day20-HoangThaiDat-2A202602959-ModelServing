@@ -1,5 +1,5 @@
 <#
-  Windows runner — the equivalent of `make <target>` for students without make.
+  Windows runner - the equivalent of `make <target>` for students without make.
 
   Works in Windows PowerShell 5.1 (powershell.exe) and PowerShell 7+ (pwsh).
 
@@ -12,7 +12,7 @@
       .\lab.ps1 verify
 
   Every target maps 1:1 to the make target of the same name, so docs/GUIDE.md applies
-  as written — just substitute `.\lab.ps1 x` for `make x`.
+  as written - just substitute `.\lab.ps1 x` for `make x`.
 #>
 param(
     [Parameter(Position = 0)] [string] $Target = "help",
@@ -21,6 +21,13 @@ param(
 
 $ErrorActionPreference = 'Stop'
 Set-Location $PSScriptRoot
+# Python 3.10 on Windows otherwise uses the legacy code page for files/output.
+$env:PYTHONUTF8 = '1'
+# Preserve this submission's CPU base measurements after repairing CUDA.
+# GPU sweeps pass -ngl explicitly; other GPU runs can set LAB_N_GPU_LAYERS.
+if ([string]::IsNullOrWhiteSpace($env:LAB_N_GPU_LAYERS)) {
+    $env:LAB_N_GPU_LAYERS = '0'
+}
 
 $VenvPy = Join-Path $PSScriptRoot '.venv\Scripts\python.exe'
 $Port   = if ($env:LAB_SERVER_PORT) { $env:LAB_SERVER_PORT } else { '8080' }
@@ -45,7 +52,7 @@ function Locust {
 switch ($Target) {
     'help' {
         Write-Host ""
-        Write-Host "Day 20 lab — Windows runner" -ForegroundColor Cyan
+        Write-Host "Day 20 lab - Windows runner" -ForegroundColor Cyan
         Write-Host "Usage:  .\lab.ps1 <target>"
         Write-Host ""
         Write-Host "Setup (00)"
@@ -55,6 +62,7 @@ switch ($Target) {
         Write-Host ""
         Write-Host "Measure (01)"
         Write-Host "  bench          TTFT / TPOT / percentiles, both quantizations"
+        Write-Host "  quality        Same question on both quantizations for quality review"
         Write-Host "  tune           Thread sweep -> your before/after speedup"
         Write-Host ""
         Write-Host "Serve (02)"
@@ -94,6 +102,7 @@ switch ($Target) {
     'runtime' { Py labs\00-setup\fetch-runtime.py --force }
 
     'bench'   { Py labs\01-measure\benchmark.py }
+    'quality' { Py labs\01-measure\compare-quality.py @Rest }
     'tune'    { Py labs\01-measure\tune.py @Rest }
 
     'serve'       { Py labs\02-serve\serve.py @Rest }

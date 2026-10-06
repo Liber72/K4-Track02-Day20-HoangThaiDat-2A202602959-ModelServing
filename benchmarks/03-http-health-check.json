@@ -1,0 +1,15 @@
+{
+  "method": "One fresh httpx.get per address, idle running server; not an LLM inference benchmark.",
+  "results": [
+    {
+      "url": "http://localhost:8080/health",
+      "elapsed_ms": 2125.9,
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8080/health",
+      "elapsed_ms": 61.1,
+      "status": 200
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "prompt": "Explain TTFT and TPOT. A request emits its first token at 200 ms and its last token at 1200 ms after the request starts, with 21 output tokens in total. Calculate TTFT, average TPOT, and decode tokens/second. Show the formulas briefly.",
+  "settings": {
+    "threads": 6,
+    "ngl": 0,
+    "ctx": 2048,
+    "temperature": 0.0,
+    "seed": 42,
+    "max_tokens": 200
+  },
+  "results": [
+    {
+      "quant": "UD-Q4_K_XL",
+      "model_file": "gemma-4-E2B-it-UD-Q4_K_XL.gguf",
+      "answer": "Here is an explanation of TTFT and TPOT, along with the calculations based on the provided scenario.\n\n---\n\n## 1. Definitions\n\n### TTFT (Time to First Token)\n**TTFT** measures the time elapsed from when a request is sent until the *very first* token of the response is received. It is a key metric for measuring the initial responsiveness of a system.\n\n**Formula:**\n$$\\text{TTFT} = \\text{Time of First Token Received} - \\text{Request Start Time}$$\n\n### TPOT (Time Per Output Token)\n**TPOT** measures the average time taken to generate or receive a single output token over the entire duration of the response. It is a measure of the sustained throughput or latency per token.\n\n**Formula:**\n$$\\text{Average TPOT} = \\frac{\\text{Total Response Time}}{\\text{Total Number of Output Tokens}}$$\n\n### Decoding Tokens/Second (Throughput)",
+      "elapsed_ms": 13793.2,
+      "finish_reason": "length",
+      "usage": {
+        "completion_tokens": 200,
+        "prompt_tokens": 72,
+        "total_tokens": 272,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 72,
+        "prompt_ms": 972.54,
+        "prompt_per_token_ms": 13.5075,
+        "prompt_per_second": 74.03294466037387,
+        "predicted_n": 200,
+        "predicted_ms": 12757.794,
+        "predicted_per_token_ms": 64.10951758793969,
+        "predicted_per_second": 15.59830798333944
+      }
+    },
+    {
+      "quant": "UD-Q2_K_XL",
+      "model_file": "gemma-4-E2B-it-UD-Q2_K_XL.gguf",
+      "answer": "This is a request that requires calculating **Time to First Token (TTFT)** and **Token Production Time (TPOT)** based on the provided information.\n\nHere is the breakdown of the calculation and explanation:\n\n---\n\n## 1. Definitions and Formulas\n\n### A. Time to First Token (TTFT)\n\n**TTFT** measures the time elapsed from the start of the request until the *first* token is emitted.\n\n**Formula:**\n$$\\text{TTFT} = \\text{Time of First Token} - \\text{Request Start Time}$$\n\n### B. Average Token Production Time (TPOT)\n\n**TPOT** measures the average time taken between the emission of consecutive tokens.\n\n**Formula (for average time between tokens):**\n$$\\text{TPOT} = \\frac{\\text{Total Time Span}}{\\text{Number of Tokens} - 1}$$\n*(Note: If you are calculating the average time *between* tokens, you",
+      "elapsed_ms": 11613.4,
+      "finish_reason": "length",
+      "usage": {
+        "completion_tokens": 200,
+        "prompt_tokens": 72,
+        "total_tokens": 272,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 72,
+        "prompt_ms": 1592.791,
+        "prompt_per_token_ms": 22.122097222222223,
+        "prompt_per_second": 45.20367078919959,
+        "predicted_n": 200,
+        "predicted_ms": 9954.822,
+        "predicted_per_token_ms": 50.02423115577889,
+        "predicted_per_second": 19.99031223260446
+      }
+    }
+  ]
+}
